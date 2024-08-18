@@ -1,0 +1,7 @@
+{
+  "LoggerSettings": {
+    "AppName": "WarehouseManager",
+    "WriteToFile": false,
+    "StructuredConsoleLogging": true
+  }
+}

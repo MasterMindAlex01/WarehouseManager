@@ -1,0 +1,17 @@
+global using Ardalis.Specification;
+global using FluentValidation;
+global using WarehouseManager.Application.Common.Events;
+global using WarehouseManager.Application.Common.Exceptions;
+global using WarehouseManager.Application.Common.FileStorage;
+global using WarehouseManager.Application.Common.Interfaces;
+global using WarehouseManager.Application.Common.Models;
+global using WarehouseManager.Application.Common.Persistence;
+global using WarehouseManager.Application.Common.Specification;
+global using WarehouseManager.Application.Common.Validation;
+global using WarehouseManager.Domain.Catalog;
+global using WarehouseManager.Domain.Common;
+global using WarehouseManager.Domain.Common.Contracts;
+global using WarehouseManager.Shared.Notifications;
+global using MediatR;
+global using Microsoft.Extensions.Localization;
+global using Microsoft.Extensions.Logging;
