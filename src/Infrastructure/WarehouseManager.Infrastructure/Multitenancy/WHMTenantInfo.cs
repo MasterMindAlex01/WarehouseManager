@@ -14,7 +14,7 @@ public class WHMTenantInfo : ITenantInfo
         Id = id;
         Identifier = id;
         Name = name;
-        //ConnectionString = connectionString ?? string.Empty;
+        ConnectionString = connectionString ?? string.Empty;
         AdminEmail = adminEmail;
         IsActive = true;
         Issuer = issuer;
