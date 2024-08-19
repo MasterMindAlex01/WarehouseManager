@@ -1,0 +1,39 @@
+version: '3.8'
+
+name: warehousemanager
+services:
+  dotnet-webapi:
+    image: alexdrdeveloper01/warehousemanager-dotnet-webapi:latest
+    container_name: warehousemanager-dotnet-webapi
+    networks:
+      - warehousemanager
+    environment:
+      - ASPNETCORE_ENVIRONMENT=docker
+      - ASPNETCORE_URLS=https://+:8081;http://+:8080
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=mypass123
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ~/.aspnet/https:/https:ro
+    ports:
+      - 5000:8080
+      - 5001:8081
+  
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - MSSQL_SA_PASSWORD=vV5r9tn0M4@
+      - ACCEPT_EULA=Y
+    ports:
+      - "1450:1433"
+    container_name: sqldata
+    volumes:
+      - sql-data:/data/db
+    networks:
+      - warehousemanager
+volumes:
+  sql-data:
+networks:
+  warehousemanager:
+    name:  warehousemanager
