@@ -7,9 +7,9 @@ using OrchardCore.Localization;
 
 namespace WarehouseManager.Infrastructure.Localization;
 
-internal static class Startup
+public static class Startup
 {
-    internal static IServiceCollection AddPOLocalization(this IServiceCollection services, IConfiguration config)
+    public static IServiceCollection AddPOLocalization(this IServiceCollection services, IConfiguration config)
     {
         var localizationSettings = config.GetSection(nameof(LocalizationSettings)).Get<LocalizationSettings>();
 

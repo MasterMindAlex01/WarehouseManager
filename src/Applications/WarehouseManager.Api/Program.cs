@@ -2,12 +2,14 @@
 using Serilog;
 using WarehouseManager.Application;
 using WarehouseManager.Host.Configurations;
+using WarehouseManager.Host.Controllers;
 using WarehouseManager.Infrastructure;
 using WarehouseManager.Infrastructure.Common;
 using WarehouseManager.Infrastructure.Logging.Serilog;
 
 namespace WarehouseManager.Api
 {
+    [ApiConventionType(typeof(WHMApiConventions))]
     public class Program
     {
         public static async Task Main(string[] args)
