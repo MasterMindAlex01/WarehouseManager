@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  warehousemanager.api:
+    image: ${DOCKER_REGISTRY-}warehousemanagerapi
+    build:
+      context: .
+      dockerfile: src/Applications/WarehouseManager.Api/Dockerfile
+    ports:
+      - "5000:8080"
+      - "5001:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=mypass123
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+        - ./src/Applications/WarehouseManager.Api/https/aspnetapp.pfx:/https/aspnetapp.pfx:ro
+
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - MSSQL_SA_PASSWORD=vV5r9tn0M4@
+      - ACCEPT_EULA=Y
+    ports:
+      - "1450:1433"
