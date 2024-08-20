@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: warehousemanager-deployment
+  labels:
+    app: warehousemanager-app
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: warehousemanager
+  template:
+    metadata: 
+      labels:
+        app: warehousemanager
+    spec:
+      containers:
+        - name: warehousemanagercontainer
+          image: alexdrdeveloper01/warehousemanager-dotnet-webapi:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          

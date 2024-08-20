@@ -21,7 +21,7 @@
     },
     "Storage": {
       "StorageProvider": "mssql",
-      "ConnectionString": "Data Source=mssql-service,1433;Initial Catalog=rootTenantDb;Persist Security Info=True;User ID=SA;Password=vV5r9tn0M4@;TrustServerCertificate=true",
+      "ConnectionString": "Data Source=sqldata;Initial Catalog=rootTenantDb;Persist Security Info=True;User ID=SA;Password=vV5r9tn0M4@;TrustServerCertificate=true",
       "Options": {
         "CommandBatchMaxTimeout": "00:05:00",
         "QueuePollInterval": "00:00:01",

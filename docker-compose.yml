@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   warehousemanager.api:
-    image: ${DOCKER_REGISTRY-}warehousemanagerapi
+    image: alexdrdeveloper01/warehousemanager-dotnet-webapi
     build:
       context: .
       dockerfile: src/Applications/WarehouseManager.Api/Dockerfile
@@ -10,7 +10,7 @@ services:
       - "5000:8080"
       - "5001:8081"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=docker
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
       - ASPNETCORE_Kestrel__Certificates__Default__Password=mypass123

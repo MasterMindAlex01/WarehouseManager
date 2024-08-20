@@ -1,0 +1,6 @@
+{
+  "DatabaseSettings": {
+    "DBProvider": "mssql",
+    "ConnectionString": "Data Source=sqldata;Initial Catalog=rootTenantDb;Persist Security Info=True;User ID=SA;Password=vV5r9tn0M4@;TrustServerCertificate=true"
+  }
+}

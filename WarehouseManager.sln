@@ -31,6 +31,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8BF6CE98
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehoueManager.Test", "tests\WarehoueManager.Test\WarehoueManager.Test.csproj", "{50F389DB-072B-41BA-A8F4-00624ED77517}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{620E2700-CCF0-480A-BE6D-F068A548A55E}"
+	ProjectSection(SolutionItems) = preProject
+		Kubernetes\sql-dep.yaml = Kubernetes\sql-dep.yaml
+		Kubernetes\sql-pvc.yaml = Kubernetes\sql-pvc.yaml
+		Kubernetes\sql-service.yaml = Kubernetes\sql-service.yaml
+		Kubernetes\warehousemanager-dep.yaml = Kubernetes\warehousemanager-dep.yaml
+		Kubernetes\warehousemanager-service.yaml = Kubernetes\warehousemanager-service.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
