@@ -11,7 +11,7 @@ Este proyecto puede ahorrarle 200+ hoursa su equipo mucho más de tiempo de desa
 El objetivo de este repositorio es proporcionar un punto de partida completo y rico en funciones para que cualquier desarrollador 
 o equipo de .NET pueda poner en marcha su próximo gran proyecto utilizando la API web de .NET 8. Esto también sirve para aprender 
 conceptos e implementaciones avanzados, como, por ejemplo, Multitenancy, CQRS, Onion Architecture, Clean Coding standards, 
-Cloud Deployments with Terraform to AWS, Docker Concepts, CICD Pipelines & Workflowsetc.
+Cloud Deployments with AKS (Azure Kubernetes Services), Docker Concepts, CICD Pipelines & Workflowsetc.
 
 - [x] Desarrollado en .NET 8.0
 - [x] Sigue los principios de arquitectura limpia
@@ -115,3 +115,4 @@ Y aquí está la respuesta.
       "refreshToken": "pyxO30zJK8KelpEXF0vPfbSbjntdlbbnxrZAlUFXfyE=",
       "refreshTokenExpiryTime": "2023-04-15T07:15:33.5187598Z"
     }
+¡Necesitarás pasarlo token en los encabezados de solicitud para autenticar las llamadas a la API WarehouseManager!
