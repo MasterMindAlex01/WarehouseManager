@@ -67,14 +67,7 @@ Para comenzar con este projecto, aquí están las opciones disponibles:
   - Cloné el repositorio WarehouseManager. Ahora que nuestra solución está generada, 
     naveguemos a la carpeta raíz de la solución y abramos una terminal de comandos para construir la solución.
 
-        - docker-compose up --build
-
- ![image](https://github.com/user-attachments/assets/baec7741-7a87-4b2c-a7d4-799484e9d325)
- ![image](https://github.com/user-attachments/assets/0371eb9d-9d85-4341-a28d-0c8af19f1058)
- ![image](https://github.com/user-attachments/assets/eedef84a-482e-4316-b079-28503e31deb7)
- ![image](https://github.com/user-attachments/assets/8839cdfe-bb4b-493d-b713-d937f1879fca)
-
-
+         docker-compose up --build
     
 De forma predeterminada, la solución está configurada para funcionar con la base de datos MSSQL endocker. Por lo tanto, 
 deberá asegurarse de que la instancia de la base de datos MSSQL se ejecute en el comando de docker-compose esté activa y 
@@ -82,16 +75,43 @@ ejecutándose en su máquina. Puede modificar la cadena de conexión para inclui
 Las cadenas de conexión se pueden encontrar en src/Host/Configurations/database.json y src/Host/Configurations/hangfire.json. 
 Una vez hecho esto, iniciemos el servidor API. para detener el servicios de docker
 
-    - docker-compose down
+     docker-compose down
 
 
 Eso es todo, la aplicación se conectará a la base de datos MSSQL definida en docker y comenzará a crear tablas y a agregar los datos necesarios.
 
 Para probar esta API, tenemos 2 opciones.
 
--@Swagger localhost:5001/swagger
+- @Swagger localhost:5001/swagger
 - Las colecciones de POSTMAN están disponibles en ./postman
 
+Las credenciales predeterminadas para esta API son:
 
+      {
+        "email":"admin@root.com",
+        "password":"123Pa$$word!"
+      }
+Abra Postman o Swagger.
 
+identidad -> obtener token
+Esta es una solicitud POST. Aquí, el cuerpo de la solicitud será el JSON (credenciales) que especifiqué anteriormente. Además, 
+recuerda pasar el ID del inquilino en el encabezado de la solicitud. El ID del inquilino predeterminado es root.
+A continuación se muestra un ejemplo de comando CURL para obtener los tokens.
 
+    curl -X POST \
+      'https://localhost:5001/api/tokens' \
+      --header 'Accept: */*' \
+      --header 'tenant: root' \
+      --header 'Accept-Language: en-US' \
+      --header 'Content-Type: application/json' \
+      --data-raw '{
+      "email": "admin@root.com",
+      "password": "123Pa$$word!"
+    }'
+Y aquí está la respuesta.
+
+    {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjM0YTY4ZjQyLWE0ZDgtNDNlMy1hNzE3LTI1OTczZjZmZTJjNyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHJvb3QuY29tIiwiZnVsbE5hbWUiOiJyb290IEFkbWluIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InJvb3QiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiQWRtaW4iLCJpcEFkZHJlc3MiOiIxMjcuMC4wLjEiLCJ0ZW5hbnQiOiJyb290IiwiaW1hZ2VfdXJsIjoiIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbW9iaWxlcGhvbmUiOiIiLCJleHAiOjE2ODA5NDE3MzN9.VYNaNvk2T4YDvQ3wriXgk2W_Vy9zyEEhjveNauNAeJY",
+      "refreshToken": "pyxO30zJK8KelpEXF0vPfbSbjntdlbbnxrZAlUFXfyE=",
+      "refreshTokenExpiryTime": "2023-04-15T07:15:33.5187598Z"
+    }
