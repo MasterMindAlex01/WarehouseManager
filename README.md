@@ -22,6 +22,7 @@ El objetivo de este repositorio es proporcionar un punto de partida completo y r
 
 <details>
   <summary>¡Haga clic para ver más!</summary>
+  
    - [x] Utiliza Entity Framework Core como abstracción de base de datos
    - [x] Patrón de repositorio flexible
    - [x] Integración elegante para un rendimiento óptimo
@@ -42,7 +43,7 @@ El objetivo de este repositorio es proporcionar un punto de partida completo y r
    - [x] MediatR-CQRS
    - [x] Notificaciones de SignalR
    - [x] Y mucho más
-<details>
+</details>
 
 
 
