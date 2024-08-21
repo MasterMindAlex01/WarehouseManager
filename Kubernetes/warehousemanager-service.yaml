@@ -7,6 +7,6 @@ spec:
     app: warehousemanager
   ports:
     - protocol: TCP
-      port: 9999
+      port: 80
       targetPort: 8080
   type: LoadBalancer  
