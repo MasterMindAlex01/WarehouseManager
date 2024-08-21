@@ -128,19 +128,19 @@ Prerrequisitos
   2) Azure CLI: Asegúrate de tener instalada la última versión de Azure CLI. Puedes instalarla aquí.
 Pasos para crear un clúster de Kubernetes en Azure
 
-1. Iniciar sesión en Azure
+1) Iniciar sesión en Azure
 Abre una terminal y ejecuta el siguiente comando para iniciar sesión en tu cuenta de Azure:
 
         az login
 
 Esto abrirá una ventana del navegador donde podrás autenticarte.
 
-2. Crear un grupo de recursos
+2) Crear un grupo de recursos
 Crea un grupo de recursos en la región donde deseas desplegar el clúster:
 
         az group create --name myResourceGroup --location eastus
 
-3. Crear el clúster de AKS
+3) Crear el clúster de AKS
 Ejecuta el siguiente comando para crear un clúster de Kubernetes. Este ejemplo crea un clúster con un nodo.
 
         az aks create \
@@ -150,14 +150,24 @@ Ejecuta el siguiente comando para crear un clúster de Kubernetes. Este ejemplo 
             --enable-addons monitoring \
             --generate-ssh-keys
 
---resource-group: Especifica el grupo de recursos.
---name: Asigna un nombre a tu clúster.
---node-count: Define el número de nodos en el clúster.
---enable-addons monitoring: Activa el monitoreo del clúster.
---generate-ssh-keys: Genera llaves SSH si no tienes unas.
+--resource-group: Especifica el grupo de recursos
+--name: Asigna un nombre a tu clúster
+--node-count: Define el número de nodos en el clúster
+--enable-addons monitoring: Activa el monitoreo del clúster
+--generate-ssh-keys: Genera llaves SSH si no tienes unas
 
-4. Conectar con el clúster de AKS
+4) Conectar con el clúster de AKS
 Para administrar el clúster, debes configurar kubectl, que es la herramienta de línea de comandos para interactuar con Kubernetes.
+
+        az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+   
+Este comando descarga las credenciales y configura el acceso al clúster para kubectl.
+
+5) Verificar la instalación
+Verifica que el clúster esté funcionando correctamente:
+
+        kubectl get nodes
+
 
 # Estructura del proyecto
 
