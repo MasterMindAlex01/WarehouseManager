@@ -119,6 +119,16 @@ Y aquí está la respuesta.
 
 # Kubernetes: AKS (Azure Kubernetes Services)
 
+Docker:
+Antes de iniciar con Kubernetes, recordemos que estamos generando una imagen docker en el docker-compose up --build, esa 
+imagen debemos publicarla en docker hub para que este disponible para usar desde los archivos yamel de kubernetes, 
+nuevamente ubicandonos en la raiz del proyecto y usando el comando:
+
+    docker push alexdrdeveloper01/warehousemanager-dotnet-webapi:latest
+
+Notas: este es repositori publico si desea cambiar a un propio solo debe generar la imagen y publicarla en su docker hub y apuntarla en los archivos yaml de la carpeta /Kubernetes.
+
+Continuamos con AKS:
 Crear un clúster de Kubernetes en Azure utilizando Azure Kubernetes Service (AKS) es un proceso relativamente sencillo 
 y se puede hacer a través del portal de Azure, Azure CLI, o Terraform. A continuación, te guiaré a través del proceso 
 utilizando Azure CLI, que es una de las formas más comunes y flexibles de hacerlo.
