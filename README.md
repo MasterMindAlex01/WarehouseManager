@@ -1,4 +1,4 @@
-# WarehouseManager
+![image](https://github.com/user-attachments/assets/761be8ef-d417-423b-9210-16a4b3b0fb14)# WarehouseManager
 Proyecto de almacén de productos con arquitectura limpia y soporte a docker y kubernetes
 
 # Descripción general
@@ -185,6 +185,17 @@ Verifica que el clúster esté funcionando correctamente:
 
         kubectl get nodes
 
+6) crear configuracion de secreto para clave de la base de datos
+
+        kubectl create secret generic mssql --from-literal=MSSQL_SA_PASSWORD="vV5r9tn0M4@"
+
+7) Aplicar todos los Archivos Kubernetes
+Desde la raiz del proyecto ejecutar el comando para cargar los despliegues y servicios Kubernetes y ejecutar la base de datos y la aplicacion en pods
+
+        kubectl create -f Kubernetes/
+
+8) Url de aplicacion desplegada
+[http://aks-tests-demo.westus2.cloudapp.azure.com/swagger/index.html](http://aks-tests-demo.westus2.cloudapp.azure.com/swagger/index.html)
 
 # Estructura del proyecto
 
