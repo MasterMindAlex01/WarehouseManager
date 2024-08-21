@@ -17,7 +17,7 @@ spec:
       containers:
         - name: warehousemanagercontainer
           image: alexdrdeveloper01/warehousemanager-dotnet-webapi:latest
-          imagePullPolicy: Never
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           volumeMounts:
