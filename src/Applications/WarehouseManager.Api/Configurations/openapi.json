@@ -4,11 +4,11 @@
     "Title": "WarehouseManager - Clean Architecture",
     "Version": "1.0.0",
     "Description": "Clean Architecture Template for .NET 8 WebApi built with Multitenancy Support.",
-    "ContactName": "Mukesh Murugan",
-    "ContactEmail": "hello@codewithmukesh.com",
-    "ContactUrl": "https://linkedin.com/in/iammukeshm",
+    "ContactName": "Alex Dario Rodriguez",
+    "ContactEmail": "alex.rodriguez060892@gmail.com",
+    "ContactUrl": "https://www.linkedin.com/in/alex-rodriguez-a1aa04167/",
     "License": true,
     "LicenseName": "MIT License",
-    "LicenseUrl": "https://github.com/fullstackhero/dotnet-webapi-boilerplate/blob/main/LICENSE"
+    "LicenseUrl": "https://github.com/MasterMindAlex01/WarehouseManager/LICENSE"
   }
 }
