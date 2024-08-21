@@ -8,7 +8,7 @@ El .NET Web API WarehouseManage es un punto de partida para Clean Architecture P
 # Objetivos 
 El objetivo de este repositorio es proporcionar un punto de partida completo y rico en funciones para que cualquier desarrollador o equipo de .NET pueda poner en marcha su próximo gran proyecto utilizando la API web de .NET 8. Esto también sirve para aprender conceptos e implementaciones avanzados, como, por ejemplo, Multitenancy, CQRS, Onion Architecture, Clean Coding standards, Cloud Deployments with Terraform to AWS, Docker Concepts, CICD Pipelines & Workflowsetc.
 
-- [x] Desarrollado en .NET 7.0
+- [x] Desarrollado en .NET 8.0
 - [x] Sigue los principios de arquitectura limpia
 - [x] Diseño impulsado por el dominio
 - [x] Listo para la nube. Se puede implementar en la infraestructura de AWS como contenedores ECS con Terraform.
