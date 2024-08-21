@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     app: warehousemanager
-  type: NodePort  
+  type: ClusterIP  
   ports:
     - protocol: TCP
       port: 9999
