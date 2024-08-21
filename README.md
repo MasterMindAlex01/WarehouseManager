@@ -116,3 +116,79 @@ Y aquí está la respuesta.
       "refreshTokenExpiryTime": "2023-04-15T07:15:33.5187598Z"
     }
 ¡Necesitarás pasarlo token en los encabezados de solicitud para autenticar las llamadas a la API WarehouseManager!
+
+# Estructura del proyecto
+
+Así es como está estructurado el Warehousemanager de .NET WebApi.
+
+El .NET WebAPI Warehousemanager se basa en una arquitectura limpia. En otras palabras, arquitectura Onion/Hexagonal.
+
+# Estructura general 
+
+Esto significa que toda la solución está diseñada de tal manera que puede ser escalable y mantenida fácilmente por equipos de desarrolladores. Esta solución WebAPI consta principalmente de los siguientes archivos .csproj.
+
+
+    ├── src
+    |   |──Applications
+    |   │   ├── api
+    |   |   |   └── api.csproj
+    │   ├── Core
+    │   |   ├── Application.csproj
+    │   |   ├── Shared.csproj
+    │   |   └── Domain.csproj
+    |   ├── Infrastructure
+    |   |   └── Infrastructure.csproj
+    |   ├── Migrators
+    │   |   ├── Migrators.MSSQL.csproj
+    │   |   ├── Migrators.MySQL.csproj
+    │   |   ├── Migrators.PostgreSQL.csproj
+    │   |   └── Migrators.Oracle.csproj
+
+La idea es construir una arquitectura muy flexible siguiendo las mejores prácticas y paquetes. Veamos brevemente qué responsabilidades asume cada uno de estos proyectos.
+
+# Applications 
+Contiene los controladores de API y la lógica de inicio, incluida la configuración del contenedor ASP.NET Core. Este es el punto de entrada de la aplicación. Además, otros archivos estáticos como los registros, los archivos JSON de localización, las imágenes, las plantillas de correo electrónico y, lo más importante, los archivos de configuración se encuentran en este proyecto.
+
+Con el lanzamiento de la versión, el archivo appSettings.json se divide en subconfiguraciones variables como database.json, security.json, etc., para lograr una mejor modularidad y organización. Puede encontrar estos nuevos archivos JSON en la carpeta Configuraciones del proyecto Host.
+
+    ├── Api
+    |   ├── Configurations
+    |   ├── Controllers
+    |   ├── Email Templates
+    |   ├── Extensions
+    |   ├── Files
+    │   |   ├── Images
+    │   |   └── Documents
+    |   ├── Localization
+    |   ├── Logs
+    |   └── appsettings.json
+    
+Tenga en cuenta que el proyecto Host depende de
+
+- Application
+- Infrastructure
+- Migration Projects
+
+Este es uno de los proyectos de la carpeta principal, además del proyecto de dominio. Aquí puede ver las clases abstractas y las interfaces que se heredan e implementan en el proyecto de infraestructura. Esto hace referencia a la inversión de dependencias.
+
+    ├── Core
+    |   ├── Application
+    |   |   ├── Auditing
+    |   |   ├── Catalog
+    |   |   ├── Common
+    |   |   ├── Dashboard
+    |   |   ├── Identity
+    |   |   └── Multitenancy
+
+Las carpetas se dividen en el nivel superior según las características. Esto significa que ahora es más fácil para los desarrolladores comprender la estructura de carpetas. Cada una de las carpetas de características, como Catálogo, tendrá todos los archivos relacionados con su ámbito, incluidos validadores, dtos, interfaces, etc.
+
+De esta forma, todo lo relacionado con una función se encontrará directamente en esa carpeta de función.
+
+En los casos en los que hay menos clases o interfaces asociadas a una función, todas estas clases se colocan directamente en la raíz de la carpeta de funciones. Solo cuando aumenta la complejidad de la función, se recomienda separar las clases por tipo.
+
+Tenga en cuenta que el proyecto de aplicación depende únicamente de los proyectos principales, que son Sharedy Domain.
+
+# Dominio 
+Tenga en cuenta que el proyecto de dominio no depende de ningún otro proyecto que no sea el Sharedproyecto.
+
+Según los principios de la arquitectura limpia, el núcleo de esta solución, es decir, los proyectos de aplicación y de dominio, no dependen de ningún otro proyecto. Esto ayuda a lograr la inversión de dependencias (el principio "D" de "SOLID").
