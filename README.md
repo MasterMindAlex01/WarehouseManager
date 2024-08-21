@@ -130,7 +130,7 @@ Notas: este es repositori publico si desea cambiar a un propio solo debe generar
 
 Continuamos con AKS:
 
-[Lista de reproduccion para creacion de AKS por el portal](https://youtu.be/YlR9AkDJMMA?si=x8T47Yd3kIP9dd6k)
+[Lista de reproduccion para creacion de AKS por el portal](https://www.youtube.com/watch?v=YlR9AkDJMMA&list=PL9aNQqB-xjbAjGjkAKuydrYa8ZDM4TcI7&index=1)
 
 Crear un clúster de Kubernetes en Azure utilizando Azure Kubernetes Service (AKS) es un proceso relativamente sencillo 
 y se puede hacer a través del portal de Azure, Azure CLI, o Terraform. A continuación, te guiaré a través del proceso 
