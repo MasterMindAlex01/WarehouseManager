@@ -20,11 +20,4 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-          volumeMounts:
-            - name: ssl
-              mountPath: "/app/https"
-      volumes:
-        - name: ssl
-          configMap:
-            name: warehousemanager-config
           

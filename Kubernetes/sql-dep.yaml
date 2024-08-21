@@ -12,6 +12,10 @@ spec:
       labels:
         app: mssql
     spec:
+      terminationGracePeriodSeconds: 30
+      hostname: mssqlinst
+      securityContext:
+        fsGroup: 10001
       containers:
       - name: mssql
         image: mcr.microsoft.com/mssql/server:2022-latest
@@ -23,11 +27,14 @@ spec:
         - name: ACCEPT_EULA
           value: "Y"
         - name: MSSQL_SA_PASSWORD
-          value: "vV5r9tn0M4@"
+          valueFrom:
+            secretKeyRef:
+              name: mssql
+              key: MSSQL_SA_PASSWORD
         volumeMounts:
         - name: mssqldb
-          mountPath: /var/opt/mssql/data
-      volumes: 
+          mountPath: /var/opt/mssql
+      volumes:
       - name: mssqldb
         persistentVolumeClaim:
           claimName: mssql-pvc
