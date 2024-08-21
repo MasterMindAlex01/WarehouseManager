@@ -117,6 +117,48 @@ Y aquí está la respuesta.
     }
 ¡Necesitarás pasarlo token en los encabezados de solicitud para autenticar las llamadas a la API WarehouseManager!
 
+# Kubernetes: AKS (Azure Kubernetes Services)
+
+Crear un clúster de Kubernetes en Azure utilizando Azure Kubernetes Service (AKS) es un proceso relativamente sencillo 
+y se puede hacer a través del portal de Azure, Azure CLI, o Terraform. A continuación, te guiaré a través del proceso 
+utilizando Azure CLI, que es una de las formas más comunes y flexibles de hacerlo.
+
+Prerrequisitos
+  1) Cuenta de Azure: Necesitas una cuenta de Azure activa.
+  2) Azure CLI: Asegúrate de tener instalada la última versión de Azure CLI. Puedes instalarla aquí.
+Pasos para crear un clúster de Kubernetes en Azure
+
+1. Iniciar sesión en Azure
+Abre una terminal y ejecuta el siguiente comando para iniciar sesión en tu cuenta de Azure:
+
+        az login
+
+Esto abrirá una ventana del navegador donde podrás autenticarte.
+
+2. Crear un grupo de recursos
+Crea un grupo de recursos en la región donde deseas desplegar el clúster:
+
+        az group create --name myResourceGroup --location eastus
+
+3. Crear el clúster de AKS
+Ejecuta el siguiente comando para crear un clúster de Kubernetes. Este ejemplo crea un clúster con un nodo.
+
+        az aks create \
+            --resource-group myResourceGroup \
+            --name myAKSCluster \
+            --node-count 1 \
+            --enable-addons monitoring \
+            --generate-ssh-keys
+
+--resource-group: Especifica el grupo de recursos.
+--name: Asigna un nombre a tu clúster.
+--node-count: Define el número de nodos en el clúster.
+--enable-addons monitoring: Activa el monitoreo del clúster.
+--generate-ssh-keys: Genera llaves SSH si no tienes unas.
+
+4. Conectar con el clúster de AKS
+Para administrar el clúster, debes configurar kubectl, que es la herramienta de línea de comandos para interactuar con Kubernetes.
+
 # Estructura del proyecto
 
 Así es como está estructurado el Warehousemanager de .NET WebApi.
@@ -188,7 +230,7 @@ En los casos en los que hay menos clases o interfaces asociadas a una función, 
 
 Tenga en cuenta que el proyecto de aplicación depende únicamente de los proyectos principales, que son Sharedy Domain.
 
-# Dominio 
+# Domain 
 Tenga en cuenta que el proyecto de dominio no depende de ningún otro proyecto que no sea el Sharedproyecto.
 
 Según los principios de la arquitectura limpia, el núcleo de esta solución, es decir, los proyectos de aplicación y de dominio, no dependen de ningún otro proyecto. Esto ayuda a lograr la inversión de dependencias (el principio "D" de "SOLID").
