@@ -69,8 +69,8 @@ Para comenzar con este projecto, aquí están las opciones disponibles:
 
          docker-compose up --build
     
-De forma predeterminada, la solución está configurada para funcionar con la base de datos MSSQL endocker. Por lo tanto, 
-deberá asegurarse de que la instancia de la base de datos MSSQL se ejecute en el comando de docker-compose esté activa y 
+De forma predeterminada, la solución está configurada para funcionar con la base de datos MSSQL en docker. Por lo tanto, 
+deberá asegurarse de que la instancia de la base de datos MSSQL se ejecute en el comando de docker-compose  cuando esté activa y 
 ejecutándose en su máquina. Puede modificar la cadena de conexión para incluir su nombre de usuario y contraseña. 
 Las cadenas de conexión se pueden encontrar en src/Host/Configurations/database.json y src/Host/Configurations/hangfire.json. 
 Una vez hecho esto, iniciemos el servidor API. para detener el servicios de docker
