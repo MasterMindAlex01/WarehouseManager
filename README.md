@@ -61,6 +61,7 @@ Para comenzar con este projecto, aquí están las opciones disponibles:
   - API Testing Tools: POSTMAN
   - Contenedores: Docker
   - Kubernetes: MiniKube
+  - Kubernetes-lens
     
 # Guía de inicio rápido 
   - Cloné el repositorio WarehouseManager. Ahora que nuestra solución está generada, 
@@ -83,6 +84,13 @@ Una vez hecho esto, iniciemos el servidor API. para detener el servicios de dock
 
     - docker-compose down
 
+
+Eso es todo, la aplicación se conectará a la base de datos MSSQL definida en docker y comenzará a crear tablas y a agregar los datos necesarios.
+
+Para probar esta API, tenemos 2 opciones.
+
+-@Swagger localhost:5001/swagger
+- Las colecciones de POSTMAN están disponibles en ./postman
 
 
 
