@@ -129,6 +129,9 @@ nuevamente ubicandonos en la raiz del proyecto y usando el comando:
 Notas: este es repositori publico si desea cambiar a un propio solo debe generar la imagen y publicarla en su docker hub y apuntarla en los archivos yaml de la carpeta /Kubernetes.
 
 Continuamos con AKS:
+
+[Lista de reproduccion para creacion de AKS por el portal](https://youtu.be/YlR9AkDJMMA?si=x8T47Yd3kIP9dd6k)
+
 Crear un clúster de Kubernetes en Azure utilizando Azure Kubernetes Service (AKS) es un proceso relativamente sencillo 
 y se puede hacer a través del portal de Azure, Azure CLI, o Terraform. A continuación, te guiaré a través del proceso 
 utilizando Azure CLI, que es una de las formas más comunes y flexibles de hacerlo.
@@ -161,9 +164,13 @@ Ejecuta el siguiente comando para crear un clúster de Kubernetes. Este ejemplo 
             --generate-ssh-keys
 
 --resource-group: Especifica el grupo de recursos
+
 --name: Asigna un nombre a tu clúster
+
 --node-count: Define el número de nodos en el clúster
+
 --enable-addons monitoring: Activa el monitoreo del clúster
+
 --generate-ssh-keys: Genera llaves SSH si no tienes unas
 
 4) Conectar con el clúster de AKS
