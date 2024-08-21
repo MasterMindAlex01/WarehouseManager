@@ -45,5 +45,16 @@ El objetivo de este repositorio es proporcionar un punto de partida completo y r
    - [x] Y mucho más
 </details>
 
+# Empezando
+Para comenzar con este projecto, aquí están las opciones disponibles.
+
+#Development Environment
+
+- .NET SDK: 8.0
+- IDE: Visual studio 2022 o Visual studio Code
+- Base de datos: SQLServer - SQL Server Management Studio (SSMS)
+- API Testing Tools: POSTMAN
+- Contenedores: Docker
+
 
 
