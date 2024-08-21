@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/761be8ef-d417-423b-9210-16a4b3b0fb14)# WarehouseManager
+# WarehouseManager
 Proyecto de almacén de productos con arquitectura limpia y soporte a docker y kubernetes
 
 # Descripción general
