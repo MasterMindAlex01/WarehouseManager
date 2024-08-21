@@ -37,6 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", 
 		Kubernetes\sql-pvc.yaml = Kubernetes\sql-pvc.yaml
 		Kubernetes\sql-service.yaml = Kubernetes\sql-service.yaml
 		Kubernetes\warehousemanager-dep.yaml = Kubernetes\warehousemanager-dep.yaml
+		Kubernetes\warehousemanager-ingress.yaml = Kubernetes\warehousemanager-ingress.yaml
 		Kubernetes\warehousemanager-service.yaml = Kubernetes\warehousemanager-service.yaml
 	EndProjectSection
 EndProject
