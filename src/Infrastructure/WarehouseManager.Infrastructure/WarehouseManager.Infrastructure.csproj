@@ -45,6 +45,7 @@
     <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="10.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
     <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="6.6.1" />
+    <PackageReference Include="Serilog.Sinks.PeriodicBatching" Version="4.0.0" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="8.0.0" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.4.4" />
     <PackageReference Include="ZymLabs.NSwag.FluentValidation.AspNetCore" Version="0.6.3" />

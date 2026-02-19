@@ -17,8 +17,8 @@ services:
     volumes:
       - ~/.aspnet/https:/https:ro
     ports:
-      - 5000:8080
-      - 5001:8081
+      - 8080:8080
+      - 8081:8081
   
   sqldata:
     image: mcr.microsoft.com/mssql/server:2022-latest
