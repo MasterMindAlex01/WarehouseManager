@@ -2,7 +2,7 @@ namespace WarehouseManager.Application.Identity.Tokens;
 
 public interface ITokenService : ITransientService
 {
-    Task<TokenResponse> GetTokenAsync(TokenRequest request, string ipAddress, CancellationToken cancellationToken);
+    Task<TokenResponse> GetTokenAsync(TokenRequestDto request, string ipAddress, CancellationToken cancellationToken);
 
-    Task<TokenResponse> RefreshTokenAsync(RefreshTokenRequest request, string ipAddress);
+    Task<TokenResponse> RefreshTokenAsync(RefreshTokenRequestDto request, string ipAddress);
 }

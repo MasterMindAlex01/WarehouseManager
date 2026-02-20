@@ -31,7 +31,7 @@ internal partial class UserService
         return userRoles;
     }
 
-    public async Task<string> AssignRolesAsync(string userId, UserRolesRequest request, CancellationToken cancellationToken)
+    public async Task<string> AssignRolesAsync(string userId, UserRolesRequestDto request, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(request, nameof(request));
 

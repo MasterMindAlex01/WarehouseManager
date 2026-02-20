@@ -101,7 +101,7 @@ internal partial class UserService
         return user;
     }
 
-    public async Task<string> CreateAsync(CreateUserRequest request, string origin)
+    public async Task<string> CreateAsync(CreateUserRequestDto request, string origin)
     {
         var user = new ApplicationUser
         {
@@ -146,7 +146,7 @@ internal partial class UserService
         return string.Join(Environment.NewLine, messages);
     }
 
-    public async Task UpdateAsync(UpdateUserRequest request, string userId)
+    public async Task UpdateAsync(UpdateUserRequestDto request, string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
 

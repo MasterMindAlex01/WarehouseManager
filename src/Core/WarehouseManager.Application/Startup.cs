@@ -9,7 +9,7 @@ public static class Startup
     {
         var assembly = Assembly.GetExecutingAssembly();
         return services
-            .AddValidatorsFromAssembly(assembly)
-            .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
+            .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly))
+            .AddValidatorsFromAssembly(assembly);
     }
 }

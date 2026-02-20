@@ -132,7 +132,7 @@ internal partial class UserService : IUserService
         return user.Adapt<UserDetailsDto>();
     }
 
-    public async Task ToggleStatusAsync(ToggleUserStatusRequest request, CancellationToken cancellationToken)
+    public async Task ToggleStatusAsync(ToggleUserStatusRequestDto request, CancellationToken cancellationToken)
     {
         var user = await _userManager.Users.Where(u => u.Id == request.UserId).FirstOrDefaultAsync(cancellationToken);
 

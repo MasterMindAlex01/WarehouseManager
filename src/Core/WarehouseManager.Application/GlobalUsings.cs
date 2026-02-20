@@ -7,7 +7,6 @@ global using WarehouseManager.Application.Common.Interfaces;
 global using WarehouseManager.Application.Common.Models;
 global using WarehouseManager.Application.Common.Persistence;
 global using WarehouseManager.Application.Common.Specification;
-global using WarehouseManager.Application.Common.Validation;
 global using WarehouseManager.Domain.Catalog;
 global using WarehouseManager.Domain.Common;
 global using WarehouseManager.Domain.Common.Contracts;

@@ -1,6 +1,6 @@
 namespace WarehouseManager.Application.Catalog.Products;
 
-public class CreateProductRequestValidator : CustomValidator<CreateProductRequest>
+public class CreateProductRequestValidator : AbstractValidator<CreateProductRequest>
 {
     public CreateProductRequestValidator(IReadRepository<Product> productRepo, IReadRepository<Brand> brandRepo, IStringLocalizer<CreateProductRequestValidator> T)
     {

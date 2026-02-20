@@ -1,5 +1,9 @@
-using System.Reflection;
-using System.Runtime.CompilerServices;
+using Asp.Versioning;
+using Carter;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using WarehouseManager.Infrastructure.Auth;
 using WarehouseManager.Infrastructure.BackgroundJobs;
 using WarehouseManager.Infrastructure.Caching;
@@ -16,14 +20,6 @@ using WarehouseManager.Infrastructure.OpenApi;
 using WarehouseManager.Infrastructure.Persistence;
 using WarehouseManager.Infrastructure.Persistence.Initialization;
 using WarehouseManager.Infrastructure.SecurityHeaders;
-using WarehouseManager.Infrastructure.Validations;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Asp.Versioning;
-
-[assembly: InternalsVisibleTo("Infrastructure.Test")]
 
 namespace WarehouseManager.Infrastructure;
 
@@ -31,20 +27,19 @@ public static class Startup
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
-        var applicationAssembly = typeof(WarehouseManager.Application.Startup).GetTypeInfo().Assembly;
         MapsterSettings.Configure();
         return services
             .AddApiVersioning()
+            .AddHttpContextAccessor()
             .AddAuth(config)
+            .AddCarter()
             .AddBackgroundJobs(config)
             .AddCaching(config)
             .AddCorsPolicy(config)
             .AddExceptionMiddleware()
-            .AddBehaviours(applicationAssembly)
             .AddHealthCheck()
             .AddPOLocalization(config)
             .AddMailing(config)
-            .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
             .AddMultitenancy()
             .AddNotifications(config)
             .AddOpenApiDocumentation(config)
@@ -93,9 +88,10 @@ public static class Startup
 
     public static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder builder)
     {
-        builder.MapControllers().RequireAuthorization();
         builder.MapHealthCheck();
         builder.MapNotifications();
+        builder.MapCarter();
+
         return builder;
     }
 

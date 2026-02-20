@@ -49,7 +49,7 @@ internal class TenantService : ITenantService
         (await GetTenantInfoAsync(id))
             .Adapt<TenantDto>();
 
-    public async Task<string> CreateAsync(CreateTenantRequest request, CancellationToken cancellationToken)
+    public async Task<string> CreateAsync(CreateTenantRequestDto request, CancellationToken cancellationToken)
     {
         if (request.ConnectionString?.Trim() == _dbSettings.ConnectionString.Trim()) request.ConnectionString = string.Empty;
 

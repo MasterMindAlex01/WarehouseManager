@@ -1,6 +1,6 @@
 namespace WarehouseManager.Application.Catalog.Products;
 
-public class UpdateProductRequestValidator : CustomValidator<UpdateProductRequest>
+public class UpdateProductRequestValidator : AbstractValidator<UpdateProductRequest>
 {
     public UpdateProductRequestValidator(IReadRepository<Product> productRepo, IReadRepository<Brand> brandRepo, IStringLocalizer<UpdateProductRequestValidator> T)
     {

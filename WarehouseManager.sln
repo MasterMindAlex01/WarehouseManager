@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.10.35122.118
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11512.155 d18.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{63F22A47-C91F-486F-BA58-657EF28172B4}"
 EndProject
@@ -26,19 +26,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseManager.Migrators.MSSQL", "src\Migrators\WarehouseManager.Migrators.MSSQL\WarehouseManager.Migrators.MSSQL.csproj", "{F10199A9-CB3B-43A8-986E-39FF2DA6609D}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D805CA85-51EA-46D9-9D9F-BBFC4839241C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8BF6CE98-6B60-411F-A205-3ED40542A781}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehoueManager.Test", "tests\WarehoueManager.Test\WarehoueManager.Test.csproj", "{50F389DB-072B-41BA-A8F4-00624ED77517}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{620E2700-CCF0-480A-BE6D-F068A548A55E}"
-	ProjectSection(SolutionItems) = preProject
-		Kubernetes\sql-dep.yaml = Kubernetes\sql-dep.yaml
-		Kubernetes\sql-pvc.yaml = Kubernetes\sql-pvc.yaml
-		Kubernetes\sql-service.yaml = Kubernetes\sql-service.yaml
-		Kubernetes\warehousemanager-dep.yaml = Kubernetes\warehousemanager-dep.yaml
-		Kubernetes\warehousemanager-service.yaml = Kubernetes\warehousemanager-service.yaml
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,10 +61,6 @@ Global
 		{D805CA85-51EA-46D9-9D9F-BBFC4839241C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D805CA85-51EA-46D9-9D9F-BBFC4839241C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D805CA85-51EA-46D9-9D9F-BBFC4839241C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50F389DB-072B-41BA-A8F4-00624ED77517}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50F389DB-072B-41BA-A8F4-00624ED77517}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50F389DB-072B-41BA-A8F4-00624ED77517}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50F389DB-072B-41BA-A8F4-00624ED77517}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,7 +76,6 @@ Global
 		{9C97687A-B541-40FB-9040-F2CF270820DD} = {ECE80A20-6D4D-4B2B-ADC2-7249BB6CB683}
 		{DE3B401B-A70C-40CD-A345-A0E5BA2D0860} = {CB3A3F4D-38E2-4C28-A414-40C154120A12}
 		{F10199A9-CB3B-43A8-986E-39FF2DA6609D} = {F884FFD9-078C-4741-B45C-09FB8CFD40BA}
-		{50F389DB-072B-41BA-A8F4-00624ED77517} = {8BF6CE98-6B60-411F-A205-3ED40542A781}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9140C69A-8ADC-400D-88C0-E8E8CFA91927}

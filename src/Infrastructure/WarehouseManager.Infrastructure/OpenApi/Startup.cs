@@ -20,7 +20,7 @@ internal static class Startup
         if (settings.Enable)
         {
             services.AddApiVersioning().AddApiExplorer(o => o.SubstituteApiVersionInUrl = true);
-
+            services.AddEndpointsApiExplorer();
             services.AddScoped<FluentValidationSchemaProcessor>(provider =>
             {
                 var validationRules = provider.GetService<IEnumerable<FluentValidationRule>>();

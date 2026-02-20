@@ -71,7 +71,7 @@ internal class RoleService : IRoleService
         return role;
     }
 
-    public async Task<string> CreateOrUpdateAsync(CreateOrUpdateRoleRequest request)
+    public async Task<string> CreateOrUpdateAsync(CreateOrUpdateRoleRequestDto request)
     {
         if (string.IsNullOrEmpty(request.Id))
         {
@@ -116,7 +116,7 @@ internal class RoleService : IRoleService
         }
     }
 
-    public async Task<string> UpdatePermissionsAsync(UpdateRolePermissionsRequest request, CancellationToken cancellationToken)
+    public async Task<string> UpdatePermissionsAsync(UpdateRolePermissionsRequestDto request, CancellationToken cancellationToken)
     {
         var role = await _roleManager.FindByIdAsync(request.RoleId);
         _ = role ?? throw new NotFoundException(_t["Role Not Found"]);

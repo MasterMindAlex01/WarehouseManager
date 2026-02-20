@@ -12,9 +12,9 @@ public interface IRoleService : ITransientService
 
     Task<RoleDto> GetByIdWithPermissionsAsync(string roleId, CancellationToken cancellationToken);
 
-    Task<string> CreateOrUpdateAsync(CreateOrUpdateRoleRequest request);
+    Task<string> CreateOrUpdateAsync(CreateOrUpdateRoleRequestDto request);
 
-    Task<string> UpdatePermissionsAsync(UpdateRolePermissionsRequest request, CancellationToken cancellationToken);
+    Task<string> UpdatePermissionsAsync(UpdateRolePermissionsRequestDto request, CancellationToken cancellationToken);
 
     Task<string> DeleteAsync(string id);
 }

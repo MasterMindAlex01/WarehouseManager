@@ -9,6 +9,24 @@ namespace WarehouseManager.Infrastructure.Identity;
 
 internal partial class UserService
 {
+
+    public async Task<string> GetEmailVerificationUriAsync(string email, string origin)
+    {
+        EnsureValidTenant();
+
+        var user = await _userManager.FindByEmailAsync(email);
+        _ = user ?? throw new InternalServerException(_t["An error occurred while generating email verification URI."]);
+
+        string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+        const string route = "api/users/confirm-email/";
+        var endpointUri = new Uri(string.Concat($"{origin}/", route));
+        string verificationUri = QueryHelpers.AddQueryString(endpointUri.ToString(), QueryStringKeys.UserId, user.Id);
+        verificationUri = QueryHelpers.AddQueryString(verificationUri, QueryStringKeys.Code, code);
+        verificationUri = QueryHelpers.AddQueryString(verificationUri, MultitenancyConstants.TenantIdName, _currentTenant.Id!);
+        return verificationUri;
+    }
+
     private async Task<string> GetEmailVerificationUriAsync(ApplicationUser user, string origin)
     {
         EnsureValidTenant();

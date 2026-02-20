@@ -1,13 +1,14 @@
-﻿using WarehouseManager.Application.Common.Exceptions;
+﻿using Microsoft.AspNetCore.WebUtilities;
+using WarehouseManager.Application.Common.Exceptions;
 using WarehouseManager.Application.Common.Mailing;
+using WarehouseManager.Application.Identity.Users;
 using WarehouseManager.Application.Identity.Users.Password;
-using Microsoft.AspNetCore.WebUtilities;
 
 namespace WarehouseManager.Infrastructure.Identity;
 
 internal partial class UserService
 {
-    public async Task<string> ForgotPasswordAsync(ForgotPasswordRequest request, string origin)
+    public async Task<string> ForgotPasswordAsync(ForgotPasswordRequestDto request, string origin)
     {
         EnsureValidTenant();
 
@@ -33,7 +34,7 @@ internal partial class UserService
         return _t["Password Reset Mail has been sent to your authorized Email."];
     }
 
-    public async Task<string> ResetPasswordAsync(ResetPasswordRequest request)
+    public async Task<string> ResetPasswordAsync(ResetPasswordRequestDto request)
     {
         var user = await _userManager.FindByEmailAsync(request.Email?.Normalize()!);
 
@@ -47,7 +48,7 @@ internal partial class UserService
             : throw new InternalServerException(_t["An Error has occurred!"]);
     }
 
-    public async Task ChangePasswordAsync(ChangePasswordRequest model, string userId)
+    public async Task ChangePasswordAsync(ChangePasswordRequestDto model, string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
 
