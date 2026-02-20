@@ -62,18 +62,18 @@ public class BrandGeneratorJob : IBrandGeneratorJob
     {
         await NotifyAsync("Your job processing has started", 0, cancellationToken);
 
-        foreach (int index in Enumerable.Range(1, nSeed))
-        {
-            await _mediator.Send(
-                new CreateBrandRequest
-                {
-                    Name = $"Brand Random - {Guid.NewGuid()}",
-                    Description = "Funny description"
-                },
-                cancellationToken);
+        //foreach (int index in Enumerable.Range(1, nSeed))
+        //{
+        //    await _mediator.Send(
+        //        new CreateBrandRequest
+        //        {
+        //            Name = $"Brand Random - {Guid.NewGuid()}",
+        //            Description = "Funny description"
+        //        },
+        //        cancellationToken);
 
-            await NotifyAsync("Progress: ", nSeed > 0 ? (index * 100 / nSeed) : 0, cancellationToken);
-        }
+        //    await NotifyAsync("Progress: ", nSeed > 0 ? (index * 100 / nSeed) : 0, cancellationToken);
+        //}
 
         await NotifyAsync("Job successfully completed", 0, cancellationToken);
     }
@@ -88,10 +88,10 @@ public class BrandGeneratorJob : IBrandGeneratorJob
 
         _logger.LogInformation("Brands Random: {brandsCount} ", items.Count.ToString());
 
-        foreach (var item in items)
-        {
-            await _mediator.Send(new DeleteBrandRequest(item.Id), cancellationToken);
-        }
+        //foreach (var item in items)
+        //{
+        //    await _mediator.Send(new DeleteBrandRequest(item.Id), cancellationToken);
+        //}
 
         _logger.LogInformation("All random brands deleted.");
     }

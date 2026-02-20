@@ -1,8 +1,10 @@
-﻿namespace WarehouseManager.Application.Catalog.Products;
+﻿using WarehouseManager.Api.Features.Catalog.Products;
+
+namespace WarehouseManager.Application.Catalog.Products;
 
 public class ProductsBySearchRequestWithBrandsSpec : EntitiesByPaginationFilterSpec<Product, ProductDto>
 {
-    public ProductsBySearchRequestWithBrandsSpec(SearchProductsRequest request)
+    public ProductsBySearchRequestWithBrandsSpec(SearchProductsRequestDto request)
         : base(request) =>
         Query
             .Include(p => p.Brand)
