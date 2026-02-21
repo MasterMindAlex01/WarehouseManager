@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class BrandsService {
-        private readonly apiUrl = environment.apiUrl;
+    private readonly apiUrl = environment.apiUrl;
 
     constructor(private http: HttpClient) { }
 
@@ -24,7 +24,11 @@ export class BrandsService {
         return this.http.post<string>(`${this.apiUrl}/brands`, request);
     }
 
-    updateBrand(id: string,request: UpdateBrandRequest): Observable<string> {
+    updateBrand(id: string, request: UpdateBrandRequest): Observable<string> {
         return this.http.put<string>(`${this.apiUrl}/brands/${id}`, request);
+    }
+
+    deleteBrand(id: string): Observable<string> {
+        return this.http.delete<string>(`${this.apiUrl}/brands/${id}`);
     }
 }

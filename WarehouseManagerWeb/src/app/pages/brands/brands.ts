@@ -1,3 +1,4 @@
+import { BrandDto, CreateBrandRequest, UpdateBrandRequest } from './../../interfaces/brand';
 import { Component, OnInit, signal, ViewChild, inject } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table, TableModule } from 'primeng/table';
@@ -18,11 +19,9 @@ import { TagModule } from 'primeng/tag';
 import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ProductsService } from '../../service/products/products.service';
 import { ProductDto, UpdateProductRequest } from '@app/interfaces/product';
 import { CreateProductRequest } from '../../interfaces/product';
 import { Paginator, PaginatorModule } from "primeng/paginator";
-import { BrandDto } from '@app/interfaces/brand';
 import { BrandsService } from '../../service/brands/brands.service';
 
 interface Column {
@@ -61,19 +60,14 @@ interface ExportColumn {
         Paginator,
         PaginatorModule
     ],
-    templateUrl: './products.html',
-    providers: [MessageService, ProductsService, BrandsService, ConfirmationService]
+    templateUrl: './brands.html',
+    providers: [MessageService, BrandsService, ConfirmationService]
 })
-export class Products implements OnInit {
-    productDialog: boolean = false;
+export class Brands implements OnInit {
+    brandDialog: boolean = false;
 
-    products = signal<ProductDto[]>([]);
-    brands: BrandDto[] = [];
-    selectBrand: BrandDto | null = null;
-
-    product!: ProductDto;
-
-    selectedProducts!: ProductDto[] | null;
+    brands = signal<BrandDto[]>([]);
+    brand!: BrandDto;
     submitted: boolean = false;
 
     @ViewChild('dt') dt!: Table;
@@ -87,7 +81,6 @@ export class Products implements OnInit {
     rows: number = 10;
     totalRecords: number = 0;
 
-    productsService = inject(ProductsService);
     brandsService = inject(BrandsService);
     messageService = inject(MessageService);
     confirmationService = inject(ConfirmationService);
@@ -99,26 +92,16 @@ export class Products implements OnInit {
     loadData(page: number = 1, limit: number = 10) {
 
         this.brandsService.getBrands({
-            pageNumber: 1,
-            pageSize: 100
-        }).subscribe((data) => {
-            this.brands = data.data;
-        });
-
-        this.productsService.getProducts({
             pageNumber: page,
             pageSize: limit
         }).subscribe((data) => {
             this.totalRecords = data.totalCount;
-            this.products.set(data.data);
+            this.brands.set(data.data);
         });
 
         this.cols = [
-            { field: 'image', header: 'Image' },
             { field: 'name', header: 'Name' },
             { field: 'description', header: 'Description' },
-            { field: 'rate', header: 'Rate' },
-            { field: 'brandName', header: 'BrandName' },
         ];
 
         this.exportColumns = this.cols.map((col) => ({ title: col.header, dataKey: col.field }));
@@ -130,74 +113,66 @@ export class Products implements OnInit {
 
     openNew() {
         this.isEditing = false;
-        this.product = {};
-        this.selectBrand = null;
+        this.brand = {};
         this.submitted = false;
-        this.productDialog = true;
+        this.brandDialog = true;
     }
 
-    editProduct(product: ProductDto) {
+    editBrand(brand: BrandDto) {
         this.isEditing = true;
-        this.product = { ...product };
-        this.selectBrand = this.brands.find(brand => brand.id === product.brandId) || null;
-        this.productDialog = true;
+        this.brand = { ...brand };
+        this.brandDialog = true;
     }
 
     hideDialog() {
-        this.productDialog = false;
+        this.brandDialog = false;
         this.submitted = false;
     }
 
-    saveProduct() {
+    saveBrand() {
         this.submitted = true;
 
-        if (!this.selectBrand) {
+        if (!this.brand.name?.trim()) {
             this.messageService.add({
                 severity: 'error',
                 summary: 'Error',
-                detail: 'Debe seleccionar una marca',
+                detail: 'Debe ingresar un nombre para la marca',
                 life: 3000
             });
             return;
         }
 
-        if (this.product.name?.trim()) {
-            this.product.brandId = this.selectBrand.id;
-            if (this.product.id) {
-                const updateProductRequest: UpdateProductRequest = {
-                    id: this.product.id!,
-                    name: this.product.name!,
-                    description: this.product.description,
-                    rate: this.product.rate!,
-                    brandId: this.product.brandId!,
-                    deleteCurrentImage: false
+        if (this.brand.name?.trim()) {
+            if (this.brand.id) {
+                const updateBrandRequest: UpdateBrandRequest = {
+                    id: this.brand.id!,
+                    name: this.brand.name!,
+                    description: this.brand.description
                 };
-                this.productsService.updateProduct(this.product.id.toString(), updateProductRequest)
+                this.brandsService.updateBrand(this.brand.id.toString(), updateBrandRequest)
                     .subscribe({
                         next: () => {
                             this.messageService.add({
                                 severity: 'success',
                                 summary: 'Successful',
-                                detail: 'Producto actualizado',
+                                detail: 'Marca actualizada',
                                 life: 3000
                             });
                             this.loadData();
                         }
                     });
             } else {
-                const createProductRequest: CreateProductRequest = {
-                    name: this.product.name!,
-                    description: this.product.description,
-                    rate: this.product.rate!,
-                    brandId: this.product.brandId!,
+                const createBrandRequest: CreateBrandRequest = {
+                    name: this.brand.name!,
+                    description: this.brand.description,
                 };
-                this.productsService.createProduct(createProductRequest).subscribe({
+                this.brandsService.createBrand(createBrandRequest).subscribe({
                     next: (response) => {
                         console.log(response);
                         this.messageService.add({
                             severity: 'success',
                             summary: 'Successful',
-                            detail: 'Producto creado',
+                            detail: 'Marca creada',
                             life: 3000
                         });
                         this.loadData();
@@ -206,25 +181,25 @@ export class Products implements OnInit {
 
             }
 
-            this.productDialog = false;
-            this.product = {};
+            this.brandDialog = false;
+            this.brand = {};
         }
     }
 
-    deleteProduct(product: ProductDto) {
+    deleteBrand(brand: BrandDto) {
         this.confirmationService.confirm({
-            message: '¿Estás seguro de que quieres eliminar ' + product.name + '?',
+            message: '¿Estás seguro de que quieres eliminar ' + brand.name + '?',
             header: 'Confirmar',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
 
-                this.productsService.deleteProduct(product.id!).subscribe({
+                this.brandsService.deleteBrand(brand.id!).subscribe({
                     next: () => {
                         this.loadData();
                         this.messageService.add({
                             severity: 'success',
                             summary: 'Successful',
-                            detail: 'Producto eliminado',
+                            detail: 'Marca eliminada',
                             life: 3000
                         });
                     },
@@ -232,7 +207,7 @@ export class Products implements OnInit {
                         this.messageService.add({
                             severity: 'error',
                             summary: 'Error',
-                            detail: 'Error al eliminar el producto',
+                            detail: 'Error al eliminar la marca',
                             life: 3000
                         });
                     },

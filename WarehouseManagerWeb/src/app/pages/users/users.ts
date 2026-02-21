@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit, signal, ViewChild } from '@
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomFormInput } from '@app/components/input/custom-form-input';
 import { CreateUserRequest, UpdateUserRequest, UserDataDto } from '@app/interfaces/user';
-import { UserDataClient } from '@app/service/users/user-data-client';
+import { UsersService } from '@app/service/users/users.service';
 import { emailValidator } from '@app/validators/email-validator';
 import { environment } from '@environments/environment';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -89,7 +89,7 @@ export class Users implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private userDataClient: UserDataClient,
+        private usersService: UsersService,
         private messageService: MessageService,
         private confirmationService: ConfirmationService
     ) {
@@ -127,7 +127,7 @@ export class Users implements OnInit {
     }
 
     loadData() {
-        this.userDataClient.getUserList().subscribe({
+        this.usersService.getUserList().subscribe({
             next: (result) => {
                 this.users.set(result.data!)
             },
@@ -200,7 +200,7 @@ export class Users implements OnInit {
                 deleteCurrentImage: true
             };
 
-            this.userDataClient.updateUser(request).subscribe({
+            this.usersService.updateUser(request).subscribe({
                 next: (result) => {
                     console.log(result);
                     this.messageService.add({
@@ -221,7 +221,7 @@ export class Users implements OnInit {
                 confirmPassword: this.defaultPassword
             };
 
-            this.userDataClient.createUser(request).subscribe({
+            this.usersService.createUser(request).subscribe({
                 next: (result) => {
                     console.log(result);
                     this.messageService.add({

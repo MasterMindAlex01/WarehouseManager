@@ -35,6 +35,11 @@ export class AppMenu {
                         routerLink: ['/pages/users']
                     },
                     {
+                        label: 'Marcas',
+                        icon: 'pi pi-fw pi-tags',
+                        routerLink: ['/pages/brands']
+                    },
+                    {
                         label: 'Products',
                         icon: 'pi pi-fw pi-shopping-bag',
                         routerLink: ['/pages/products']

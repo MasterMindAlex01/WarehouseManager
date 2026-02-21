@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class UserDataClient {
+export class UsersService {
     private readonly apiUrl = environment.apiUrl;
 
     constructor(private http: HttpClient) { }

@@ -1,25 +1,59 @@
-import { Component } from '@angular/core';
-import { NotificationsWidget } from './components/notificationswidget';
+import { Component, inject, signal } from '@angular/core';
 import { StatsWidget } from './components/statswidget';
-import { RecentSalesWidget } from './components/recentsaleswidget';
-import { BestSellingWidget } from './components/bestsellingwidget';
-import { RevenueStreamWidget } from './components/revenuestreamwidget';
+import { ProductsService } from '@app/service/products/products.service';
+import { BrandsService } from '@app/service/brands/brands.service';
+import { UsersService } from '@app/service/users/users.service';
 
 @Component({
     selector: 'app-dashboard',
-    imports: [StatsWidget, RecentSalesWidget, BestSellingWidget, RevenueStreamWidget, NotificationsWidget],
+    imports: [StatsWidget],
+    providers: [ProductsService, BrandsService, UsersService],
     template: `
         <div class="grid grid-cols-12 gap-8">
-            <app-stats-widget class="contents" />
-            <div class="col-span-12 xl:col-span-6">
-                <app-recent-sales-widget />
-                <app-best-selling-widget />
-            </div>
-            <div class="col-span-12 xl:col-span-6">
-                <app-revenue-stream-widget />
-                <app-notifications-widget />
-            </div>
+            <app-stats-widget class="contents"
+            [totalProductRecords]="totalProductRecords()"
+            [totalBrandRecords]="totalBrandRecords()"
+            [totalUserRecords]="totalUserRecords()" />
         </div>
     `
 })
-export class Dashboard {}
+export class Dashboard {
+
+    productsService = inject(ProductsService);
+    brandsService = inject(BrandsService);
+    usersService = inject(UsersService);
+
+    totalProductRecords = signal<number>(0);
+    totalBrandRecords = signal<number>(0);
+    totalUserRecords = signal<number>(0);
+
+    ngOnInit() {
+        this.loadData();
+    }
+
+    loadData(page: number = 1, limit: number = 100) {
+
+        this.brandsService.getBrands({
+            pageNumber: page,
+            pageSize: limit
+        }).subscribe((data) => {
+            this.totalBrandRecords.set(data.totalCount);
+        });
+
+        this.productsService.getProducts({
+            pageNumber: page,
+            pageSize: limit
+        }).subscribe((data) => {
+            this.totalProductRecords.set(data.totalCount);
+        });
+
+        this.usersService.getUserList().subscribe({
+            next: (result) => {
+                this.totalUserRecords.set(result.data?.length || 0);
+            },
+            error: (err) => {
+                console.error(err)
+            },
+        });
+    }
+}

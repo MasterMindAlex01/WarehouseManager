@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable()
 export class ProductsService {
-        private readonly apiUrl = environment.apiUrl;
+    private readonly apiUrl = environment.apiUrl;
 
     constructor(private http: HttpClient) { }
 
@@ -24,7 +24,7 @@ export class ProductsService {
         return this.http.post<ProductDto>(`${this.apiUrl}/products`, request);
     }
 
-    updateProduct(id: string,request: UpdateProductRequest): Observable<void> {
+    updateProduct(id: string, request: UpdateProductRequest): Observable<void> {
         return this.http.put<void>(`${this.apiUrl}/products/${id}`, request);
     }
 

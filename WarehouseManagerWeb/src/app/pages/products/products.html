@@ -18,6 +18,7 @@
     </ng-template>
     <ng-template #header>
         <tr>
+            <th style="width: 3rem">#</th>
             <th>Image</th>
             <th pSortableColumn="name" style="min-width:16rem">
                 Nombre
@@ -38,8 +39,9 @@
             <th style="min-width: 12rem"></th>
         </tr>
     </ng-template>
-    <ng-template #body let-product>
+    <ng-template #body let-product let-rowIndex="rowIndex">
         <tr>
+            <td>{{ rowIndex }}</td>
             <td>
                 @if(product.image){
                 <img [src]="'http://localhost:4200/' + product.image" [alt]="product.name" style="width: 64px"
