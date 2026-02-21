@@ -49,7 +49,7 @@ import { CommonModule } from '@angular/common';
                 <div class="flex justify-between mb-4">
                     <div>
                         <span class="block text-muted-color font-medium mb-4">Roles</span>
-                        <div class="text-surface-900 dark:text-surface-0 font-medium text-xl">152 Unread</div>
+                        <div class="text-surface-900 dark:text-surface-0 font-medium text-xl">{{ totalRoleRecords() }}</div>
                     </div>
                     <div class="flex items-center justify-center bg-purple-100 dark:bg-purple-400/10 rounded-border" style="width: 2.5rem; height: 2.5rem">
                         <i class="pi pi-comment text-purple-500 text-xl!"></i>
@@ -63,4 +63,5 @@ export class StatsWidget {
     totalProductRecords = input<number>(0);
     totalBrandRecords = input<number>(0);
     totalUserRecords = input<number>(0);
+    totalRoleRecords = input<number>(0);
 }

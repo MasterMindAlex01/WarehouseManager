@@ -3,17 +3,19 @@ import { StatsWidget } from './components/statswidget';
 import { ProductsService } from '@app/service/products/products.service';
 import { BrandsService } from '@app/service/brands/brands.service';
 import { UsersService } from '@app/service/users/users.service';
+import { RolesService } from '@app/service/roles/roles.service';
 
 @Component({
     selector: 'app-dashboard',
     imports: [StatsWidget],
-    providers: [ProductsService, BrandsService, UsersService],
+    providers: [ProductsService, BrandsService, UsersService, RolesService],
     template: `
         <div class="grid grid-cols-12 gap-8">
             <app-stats-widget class="contents"
             [totalProductRecords]="totalProductRecords()"
             [totalBrandRecords]="totalBrandRecords()"
-            [totalUserRecords]="totalUserRecords()" />
+            [totalUserRecords]="totalUserRecords()"
+            [totalRoleRecords]="totalRoleRecords()" />
         </div>
     `
 })
@@ -22,10 +24,12 @@ export class Dashboard {
     productsService = inject(ProductsService);
     brandsService = inject(BrandsService);
     usersService = inject(UsersService);
+    rolesService = inject(RolesService);
 
     totalProductRecords = signal<number>(0);
     totalBrandRecords = signal<number>(0);
     totalUserRecords = signal<number>(0);
+    totalRoleRecords = signal<number>(0);
 
     ngOnInit() {
         this.loadData();
@@ -55,5 +59,15 @@ export class Dashboard {
                 console.error(err)
             },
         });
+
+        this.rolesService.getRoleList().subscribe({
+            next: (result) => {
+                this.totalRoleRecords.set(result.data?.length || 0);
+            },
+            error: (err) => {
+                console.error(err)
+            },
+        });
+
     }
 }
