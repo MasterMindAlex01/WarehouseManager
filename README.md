@@ -1,9 +1,9 @@
 # WarehouseManager
-Proyecto de almacén de productos con arquitectura limpia y soporte a docker y kubernetes
+Proyecto de almacén de productos con arquitectura limpia y soporte a docker y docker compose
 
 # Descripción general
 
-El .NET Web API WarehouseManage es un punto de partida para Clean Architecture Project en .NET 8 que incorpora los paquetes 
+El .NET Web API WarehouseManager es un punto de partida para Clean Architecture Project en .NET 8 que incorpora los paquetes 
 y las características más esenciales que sus proyectos necesitarán, incluido el soporte multiusuario listo para usar. 
 Este proyecto puede ahorrarle 200+ hoursa su equipo mucho más de tiempo de desarrollo.
 
@@ -11,7 +11,7 @@ Este proyecto puede ahorrarle 200+ hoursa su equipo mucho más de tiempo de desa
 El objetivo de este repositorio es proporcionar un punto de partida completo y rico en funciones para que cualquier desarrollador 
 o equipo de .NET pueda poner en marcha su próximo gran proyecto utilizando la API web de .NET 8. Esto también sirve para aprender 
 conceptos e implementaciones avanzados, como, por ejemplo, Multitenancy, CQRS, Onion Architecture, Clean Coding standards, 
-Cloud Deployments with AKS (Azure Kubernetes Services), Docker Concepts, CICD Pipelines & Workflowsetc.
+Cloud Deployments, Docker Concepts, CICD Pipelines & Workflowsetc.
 
 - [x] Desarrollado en .NET 8.0
 - [x] Sigue los principios de arquitectura limpia
@@ -60,8 +60,6 @@ Para comenzar con este projecto, aquí están las opciones disponibles:
   - Base de datos: SQLServer - SQL Server Management Studio (SSMS)
   - API Testing Tools: POSTMAN
   - Contenedores: Docker
-  - Kubernetes: MiniKube
-  - Kubernetes-lens
     
 # Guía de inicio rápido 
   - Cloné el repositorio WarehouseManager. Ahora que nuestra solución está generada, 
@@ -116,86 +114,6 @@ Y aquí está la respuesta.
       "refreshTokenExpiryTime": "2023-04-15T07:15:33.5187598Z"
     }
 ¡Necesitarás pasarlo token en los encabezados de solicitud para autenticar las llamadas a la API WarehouseManager!
-
-# Kubernetes: AKS (Azure Kubernetes Services)
-
-Docker:
-Antes de iniciar con Kubernetes, recordemos que estamos generando una imagen docker en el docker-compose up --build, esa 
-imagen debemos publicarla en docker hub para que este disponible para usar desde los archivos yamel de kubernetes, 
-nuevamente ubicandonos en la raiz del proyecto y usando el comando:
-
-    docker push alexdrdeveloper01/warehousemanager-dotnet-webapi:latest
-
-Notas: este es repositori publico si desea cambiar a un propio solo debe generar la imagen y publicarla en su docker hub y apuntarla en los archivos yaml de la carpeta /Kubernetes.
-
-Continuamos con AKS:
-
-[Lista de reproduccion para creacion de AKS por el portal](https://www.youtube.com/watch?v=YlR9AkDJMMA&list=PL9aNQqB-xjbAjGjkAKuydrYa8ZDM4TcI7&index=1)
-
-Crear un clúster de Kubernetes en Azure utilizando Azure Kubernetes Service (AKS) es un proceso relativamente sencillo 
-y se puede hacer a través del portal de Azure, Azure CLI, o Terraform. A continuación, te guiaré a través del proceso 
-utilizando Azure CLI, que es una de las formas más comunes y flexibles de hacerlo.
-
-Prerrequisitos
-  1) Cuenta de Azure: Necesitas una cuenta de Azure activa.
-  2) Azure CLI: Asegúrate de tener instalada la última versión de Azure CLI. Puedes instalarla aquí.
-Pasos para crear un clúster de Kubernetes en Azure
-
-1) Iniciar sesión en Azure
-Abre una terminal y ejecuta el siguiente comando para iniciar sesión en tu cuenta de Azure:
-
-        az login
-
-Esto abrirá una ventana del navegador donde podrás autenticarte.
-
-2) Crear un grupo de recursos
-Crea un grupo de recursos en la región donde deseas desplegar el clúster:
-
-        az group create --name myResourceGroup --location eastus
-
-3) Crear el clúster de AKS
-Ejecuta el siguiente comando para crear un clúster de Kubernetes. Este ejemplo crea un clúster con un nodo.
-
-        az aks create \
-            --resource-group myResourceGroup \
-            --name myAKSCluster \
-            --node-count 1 \
-            --enable-addons monitoring \
-            --generate-ssh-keys
-
---resource-group: Especifica el grupo de recursos
-
---name: Asigna un nombre a tu clúster
-
---node-count: Define el número de nodos en el clúster
-
---enable-addons monitoring: Activa el monitoreo del clúster
-
---generate-ssh-keys: Genera llaves SSH si no tienes unas
-
-4) Conectar con el clúster de AKS
-Para administrar el clúster, debes configurar kubectl, que es la herramienta de línea de comandos para interactuar con Kubernetes.
-
-        az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
-   
-Este comando descarga las credenciales y configura el acceso al clúster para kubectl.
-
-5) Verificar la instalación
-Verifica que el clúster esté funcionando correctamente:
-
-        kubectl get nodes
-
-6) crear configuracion de secreto para clave de la base de datos
-
-        kubectl create secret generic mssql --from-literal=MSSQL_SA_PASSWORD="vV5r9tn0M4@"
-
-7) Aplicar todos los Archivos Kubernetes
-Desde la raiz del proyecto ejecutar el comando para cargar los despliegues y servicios Kubernetes y ejecutar la base de datos y la aplicacion en pods
-
-        kubectl create -f Kubernetes/
-
-8) Url de aplicacion desplegada
-[http://aks-tests-demo.westus2.cloudapp.azure.com/swagger/index.html](http://aks-tests-demo.westus2.cloudapp.azure.com/swagger/index.html)
 
 # Estructura del proyecto
 
