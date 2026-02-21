@@ -207,16 +207,27 @@ Instalación de dependencias
 
 Una vez clonado el repositorio, ejecuta el siguiente comando para instalar todas las dependencias necesarias:
 
-npm install
+    npm install
+
 Ejecución del proyecto
 
 Después de completar la instalación de dependencias, puedes iniciar el proyecto con:
 
-npm start
+    npm start
 
 Esto levantará la aplicación en modo desarrollo.
 
+En la URL:
+[localh](http://localhost:4200/)
+
 Credenciales de acceso
+
+
+    {
+        "email":"admin@root.com",
+        "password":"123Pa$$word!"
+        "tenant":"root"
+    }
 
 El frontend depende de la API para su correcto funcionamiento.
 Por este motivo, se recomienda ejecutar el proyecto utilizando la versión con Docker, ya que esta levanta automáticamente todos los servicios necesarios (frontend, backend y dependencias).
