@@ -32,8 +32,23 @@ services:
       - sql-data:/data/db
     networks:
       - warehousemanager
+  
+  angular-web:
+    build:
+      context: ./WarehouseManagerWeb
+      dockerfile: Dockerfile
+    image: alexdrdeveloper01/warehousemanager-angular:latest
+    container_name: warehousemanager-angular
+    ports:
+      - "4200:80"
+    depends_on:
+      - dotnet-webapi
+    networks:
+      - warehousemanager
+
 volumes:
   sql-data:
+
 networks:
   warehousemanager:
     name:  warehousemanager

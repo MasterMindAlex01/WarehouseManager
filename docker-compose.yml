@@ -25,3 +25,13 @@ services:
       - ACCEPT_EULA=Y
     ports:
       - "1450:1433"
+  
+  warehousemanager.angular:
+    build:
+      context: ./WarehouseManagerWeb
+      dockerfile: Dockerfile
+    container_name: warehousemanager_angular
+    ports:
+      - "4200:80"
+    depends_on:
+      - warehousemanager.api
