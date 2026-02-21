@@ -68,6 +68,7 @@ interface ExportColumn {
 })
 export class Users implements OnInit {
     private readonly defaultPassword = environment.defaultPassword;
+    urlBase = environment.urlBase;
 
     userDialog: boolean = false;
 

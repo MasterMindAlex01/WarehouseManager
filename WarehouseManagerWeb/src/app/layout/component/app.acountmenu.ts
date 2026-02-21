@@ -40,7 +40,7 @@ export class AppAcountMenu {
                     {
                         label: 'Profile',
                         icon: 'pi pi-fw pi-user',
-                        routerLink: ['/']
+                        routerLink: ['/pages/profile']
                     },
                     {
                         label: 'Quit',

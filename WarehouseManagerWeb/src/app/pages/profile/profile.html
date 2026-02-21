@@ -1,0 +1,68 @@
+<p-fluid>
+    @if(user) {
+
+        <div class="flex flex-col md:flex-row gap-8">
+            <div class="md:w-1/4">
+                <div class="card flex flex-col gap-4">
+                    <div class="font-semibold text-xl">Perfil</div>
+                    <div class="flex flex-col gap-2">
+                        @if(user?.imageUrl){
+                        <img [src]="urlBase +'/'+ user?.imageUrl" [alt]="user?.userName" style="width: 200px;height: auto;"
+                            class="rounded m-auto pb-4" />
+                        } @else {
+                        <img src="assets/images/user-icon.png" [alt]="user?.userName" style="width: 200px;height: auto;"
+                            class="rounded m-auto pb-4" />
+                        }
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <span>{{user?.userName}}</span>
+                        <span>{{user?.email}}</span>
+                    </div>
+                    <div class="card flex flex-wrap gap-6 items-center justify-between">
+                        <p-fileupload mode="basic" [auto]="false" chooseLabel="Choose" chooseIcon="pi pi-upload"
+                            accept="image/*" maxFileSize="1000000" (onSelect)="onSelect($event)" />
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-full">
+
+                <div class="card flex flex-col gap-6 w-full">
+                    <div class="font-semibold text-xl">Detaalles</div>
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex flex-wrap gap-2 w-full">
+                            <label for="firstname">Nombres</label>
+                            <input pInputText id="firstname" [(ngModel)]="user!.firstName!" type="text" />
+                        </div>
+                        <div class="flex flex-wrap gap-2 w-full">
+                            <label for="lastname">Apellidos</label>
+                            <input pInputText id="lastname" [(ngModel)]="user!.lastName!" type="text" />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex flex-wrap gap-2 w-full">
+                            <label for="email">Email</label>
+                            <input pInputText id="email" [(ngModel)]="user!.email!" type="text" disabled />
+                        </div>
+                        <div class="flex flex-wrap gap-2 w-full">
+                            <label for="phone">Phone</label>
+                            <input pInputText id="phone" [(ngModel)]="user!.phoneNumber!" type="text" />
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <p-button label="Guardar" (click)="saveProfile()"></p-button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    } @else {
+        <div class="card flex justify-center">
+            <p-progressSpinner></p-progressSpinner>
+        </div>
+    }
+
+</p-fluid>
+
+<p-toast />

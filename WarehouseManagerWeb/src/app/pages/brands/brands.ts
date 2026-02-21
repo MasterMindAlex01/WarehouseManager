@@ -19,8 +19,6 @@ import { TagModule } from 'primeng/tag';
 import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ProductDto, UpdateProductRequest } from '@app/interfaces/product';
-import { CreateProductRequest } from '../../interfaces/product';
 import { Paginator, PaginatorModule } from "primeng/paginator";
 import { BrandsService } from '../../service/brands/brands.service';
 
@@ -36,7 +34,7 @@ interface ExportColumn {
 }
 
 @Component({
-    selector: 'app-products-crud',
+    selector: 'app-brands-crud',
     standalone: true,
     imports: [
         CommonModule,

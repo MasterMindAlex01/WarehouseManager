@@ -57,7 +57,7 @@
         <tr>
             <td>
                 @if(user.imageUrl){
-                <img [src]="user.imageUrl" [alt]="user.userName" style="width: 64px" class="rounded" />
+                <img [src]="urlBase + '/' + user.imageUrl" [alt]="user.userName" style="width: 64px" class="rounded" />
                 } @else {
                 <img src="assets/images/user-icon.png" [alt]="user.userName" style="width: 64px" class="rounded" />
                 }
@@ -90,7 +90,7 @@
         <form id="user-form" [formGroup]="userForm" (ngSubmit)="saveUser()">
             <div class="flex flex-col gap-6">
                 @if(user.imageUrl){
-                <img [src]="user.imageUrl" [alt]="user.userName" style="width: 150px;height: auto;"
+                <img [src]="urlBase + '/' + user.imageUrl" [alt]="user.userName" style="width: 150px;height: auto;"
                     class="rounded m-auto pb-4" />
                 } @else {
                 <img src="assets/images/user-icon.png" [alt]="user.userName" style="width: 150px;height: auto;"
@@ -129,5 +129,5 @@
         </button>
     </ng-template>
 </p-dialog>
-
+<p-toast />
 <p-confirmdialog [style]="{ width: '450px' }" />
