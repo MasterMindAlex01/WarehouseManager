@@ -1,0 +1,20 @@
+
+
+<label [for]="nameControl+'label'" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">
+    {{label}}
+</label>
+@if(type !== 'password'){
+    <input pInputText [name]="nameControl" class="w-full" [ngClass]="getClasses()"
+    [type]="actualType" [placeholder]="placeholder" [formControl]="formControl" />
+} @else {
+    <p-password [name]="nameControl" [placeholder]="placeholder" [formControl]="formControl"
+    [toggleMask]="true" [ngClass]="getClasses()" [fluid]="true" [feedback]="false"></p-password>
+}
+
+@if (isInvalid) {
+<div [ngClass]="getClassesInvalid()">
+    <small class="text-red-600">
+        {{ control.errors | formError }}
+    </small>
+</div>
+}

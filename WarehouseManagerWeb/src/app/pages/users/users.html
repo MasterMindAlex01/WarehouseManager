@@ -1,0 +1,133 @@
+<p-toolbar styleClass="mb-6">
+    <ng-template #start>
+        <p-button label="New" icon="pi pi-plus" severity="secondary" class="mr-2" (onClick)="openNew()" />
+    </ng-template>
+
+</p-toolbar>
+
+<p-table #dt [value]="users()" [rows]="10" [columns]="cols" [paginator]="true"
+    [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+    [tableStyle]="{ 'min-width': '75rem' }" [(selection)]="selectedUsers" [rowHover]="true" dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 20, 30]">
+    <ng-template #caption>
+        <div class="flex items-center justify-between">
+            <h5 class="m-0">Manage Users</h5>
+            <p-iconfield>
+                <p-inputicon styleClass="pi pi-search" />
+                <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..." />
+            </p-iconfield>
+        </div>
+    </ng-template>
+    <ng-template #header>
+        <tr>
+            <th>Image</th>
+            <th pSortableColumn="userName" style="min-width:10rem">
+                Usuario
+                <p-sortIcon field="userName" />
+            </th>
+            <th pSortableColumn="firstName" style="min-width:10rem">
+                Nombres
+                <p-sortIcon field="firstName" />
+            </th>
+            <th pSortableColumn="lastName" style="min-width:10rem">
+                Apellidos
+                <p-sortIcon field="lastName" />
+            </th>
+            <th pSortableColumn="phoneNumber" style="min-width:10rem">
+                Número de teléfono
+                <p-sortIcon field="phoneNumber" />
+            </th>
+            <th pSortableColumn="email" style="min-width:10rem">
+                Email
+                <p-sortIcon field="email" />
+            </th>
+            <th pSortableColumn="isActive" style="min-width:10rem">
+                Esta Activo
+                <p-sortIcon field="isActive" />
+            </th>
+            <th pSortableColumn="emailConfirmed" style="min-width:10rem">
+                Email Confirmado
+                <p-sortIcon field="emailConfirmed" />
+            </th>
+            <th style="min-width: 10rem"></th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-user>
+        <tr>
+            <td>
+                @if(user.imageUrl){
+                <img [src]="user.imageUrl" [alt]="user.userName" style="width: 64px" class="rounded" />
+                } @else {
+                <img src="assets/images/user-icon.png" [alt]="user.userName" style="width: 64px" class="rounded" />
+                }
+            </td>
+            <td style="min-width: 10rem">{{ user.userName }}</td>
+            <td style="min-width: 10rem">{{ user.firstName }}</td>
+            <td style="min-width: 10rem">{{ user.lastName }}</td>
+            <td style="min-width: 10rem">{{ user.phoneNumber }}</td>
+            <td style="min-width: 10rem">{{ user.email }}</td>
+            <td style="min-width: 10rem">
+                <p-checkbox id="isActive" binary [(ngModel)]="user.isActive"></p-checkbox>
+            </td>
+            <td style="min-width: 10rem">
+                <p-checkbox id="emailConfirmed" binary [(ngModel)]="user.emailConfirmed"></p-checkbox>
+            </td>
+            <td>
+                @if(user.userName !== 'root.admin'){
+
+                <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true"
+                    (click)="editUser(user)" />
+                }
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-dialog [(visible)]="userDialog" [style]="{ width: '450px' }" header="Product Details" [modal]="true">
+
+    <ng-template #content>
+        <form id="user-form" [formGroup]="userForm" (ngSubmit)="saveUser()">
+            <div class="flex flex-col gap-6">
+                @if(user.imageUrl){
+                <img [src]="user.imageUrl" [alt]="user.userName" style="width: 150px;height: auto;"
+                    class="rounded m-auto pb-4" />
+                } @else {
+                <img src="assets/images/user-icon.png" [alt]="user.userName" style="width: 150px;height: auto;"
+                    class="rounded m-auto pb-4" />
+                }
+                <div>
+                    <custom-form-input nameControl="firstname" label="Nombres" type="text" [control]="firstNameControl!"
+                        styleClass="" />
+                </div>
+                <div>
+                    <custom-form-input nameControl="lastname" label="Apellidos" type="text" [control]="lastNameControl!"
+                        styleClass="" />
+                </div>
+                <div>
+                    <custom-form-input nameControl="username" label="Usuario" type="text" [control]="userNameControl!"
+                        styleClass="" />
+                </div>
+                <div>
+                    <custom-form-input nameControl="email" label="Email" type="email" [control]="emailControl!"
+                        styleClass="" />
+                </div>
+                <div>
+                    <custom-form-input nameControl="phonenumber" label="Número de teléfono" type="text"
+                        [control]="phoneNumberControl!" styleClass="" />
+                </div>
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template #footer>
+        <p-button label="Cancel" icon="pi pi-times" text (click)="hideDialog()" />
+
+        <button pButton form="user-form">
+            <i class="pi pi-check" pButtonIcon></i>
+            <span pButtonLabel>Save</span>
+        </button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmdialog [style]="{ width: '450px' }" />
