@@ -190,3 +190,39 @@ Tenga en cuenta que el proyecto de aplicación depende únicamente de los proyec
 Tenga en cuenta que el proyecto de dominio no depende de ningún otro proyecto que no sea el Sharedproyecto.
 
 Según los principios de la arquitectura limpia, el núcleo de esta solución, es decir, los proyectos de aplicación y de dominio, no dependen de ningún otro proyecto. Esto ayuda a lograr la inversión de dependencias (el principio "D" de "SOLID").
+
+# Soporte Frontend – Angular
+
+Este proyecto corresponde al frontend desarrollado en Angular.
+
+Requisitos previos
+
+Antes de iniciar, asegúrate de tener instalado en tu equipo:
+
+Node.js
+
+npm (incluido con Node.js)
+
+Instalación de dependencias
+
+Una vez clonado el repositorio, ejecuta el siguiente comando para instalar todas las dependencias necesarias:
+
+npm install
+Ejecución del proyecto
+
+Después de completar la instalación de dependencias, puedes iniciar el proyecto con:
+
+npm start
+
+Esto levantará la aplicación en modo desarrollo.
+
+Credenciales de acceso
+
+El frontend depende de la API para su correcto funcionamiento.
+Por este motivo, se recomienda ejecutar el proyecto utilizando la versión con Docker, ya que esta levanta automáticamente todos los servicios necesarios (frontend, backend y dependencias).
+
+Las credenciales de acceso al frontend se encuentran configuradas en la API que se levanta mediante Docker.
+
+Recomendación
+
+Para evitar problemas de conexión o configuración manual de servicios, se recomienda usar Docker como entorno de ejecución principal del proyecto.
