@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, inject, OnInit, ViewChild } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { UserDataDto } from "@app/interfaces/user";
 import { PersonalService } from "@app/service/personal/personal.service";
@@ -7,7 +7,7 @@ import { FluidModule } from "primeng/fluid";
 import { InputTextModule } from "primeng/inputtext";
 import { SelectModule } from "primeng/select";
 import { TextareaModule } from "primeng/textarea";
-import { FileUploadModule } from 'primeng/fileupload';
+import { FileUpload, FileUploadModule } from 'primeng/fileupload';
 import { FileUploadRequest } from "@app/interfaces/file-upload-request";
 import { MessageService } from "primeng/api";
 import { ToastModule } from "primeng/toast";
@@ -33,6 +33,8 @@ import { environment } from "@environments/environment";
 })
 export class Profile implements OnInit {
     urlBase = environment.urlBase;
+
+    @ViewChild('fileUpload') fileUpload!: FileUpload;
 
     fileRequest: FileUploadRequest | null = null;
     user: UserDataDto | null = null;
@@ -112,14 +114,19 @@ export class Profile implements OnInit {
             deleteCurrentImage: this.user!.imageUrl ? true : false,
         }).subscribe({
             next: (result) => {
-                this.fileRequest = null;
+                this.clearFile();
                 this.loadData();
                 this.messageService.add({ severity: 'success', summary: 'Profile Updated', detail: 'Your profile has been updated successfully.' });
             },
             error: (err) => {
-                this.fileRequest = null;
+                this.clearFile();
                 this.messageService.add({ severity: 'error', summary: 'Update Failed', detail: 'There was an error updating your profile. Please try again.' });
             },
         });
+    }
+
+    clearFile() {
+        this.fileUpload.clear();
+        this.fileRequest = null;
     }
 }

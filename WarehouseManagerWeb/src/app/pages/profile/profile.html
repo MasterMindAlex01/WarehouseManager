@@ -6,20 +6,20 @@
                 <div class="card flex flex-col gap-4">
                     <div class="font-semibold text-xl">Perfil</div>
                     <div class="flex flex-col gap-2">
-                        @if(user?.imageUrl){
-                        <img [src]="urlBase +'/'+ user?.imageUrl" [alt]="user?.userName" style="width: 200px;height: auto;"
+                        @if(user.imageUrl){
+                        <img [src]="urlBase +'/'+ user.imageUrl" [alt]="user.userName" style="width: 200px;height: auto;"
                             class="rounded m-auto pb-4" />
                         } @else {
-                        <img src="assets/images/user-icon.png" [alt]="user?.userName" style="width: 200px;height: auto;"
+                        <img src="assets/images/user-icon.png" [alt]="user.userName" style="width: 200px;height: auto;"
                             class="rounded m-auto pb-4" />
                         }
                     </div>
                     <div class="flex flex-col items-center gap-2">
-                        <span>{{user?.userName}}</span>
-                        <span>{{user?.email}}</span>
+                        <span>{{user.userName}}</span>
+                        <span>{{user.email}}</span>
                     </div>
                     <div class="card flex flex-wrap gap-6 items-center justify-between">
-                        <p-fileupload mode="basic" [auto]="false" chooseLabel="Choose" chooseIcon="pi pi-upload"
+                        <p-fileupload #fileUpload mode="basic" [auto]="false" chooseLabel="Choose" chooseIcon="pi pi-upload"
                             accept="image/*" maxFileSize="1000000" (onSelect)="onSelect($event)" />
                     </div>
                 </div>
