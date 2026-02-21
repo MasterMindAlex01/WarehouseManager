@@ -218,7 +218,7 @@ Después de completar la instalación de dependencias, puedes iniciar el proyect
 Esto levantará la aplicación en modo desarrollo.
 
 En la URL:
-[localh](http://localhost:4200/)
+[http://localhost:4200/](http://localhost:4200)
 
 Credenciales de acceso
 
